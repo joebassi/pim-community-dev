@@ -11,10 +11,11 @@ Feature: Display the product history
     And I am on the products page
     And I create a new product
     And I fill in the following information in the popin:
-      | SKU | boots |
+      | SKU    | boots |
+      | family | Boots |
     And I press the "Save" button in the popin
     And I wait to be on the "boots" product page
-    And I add available attributes Weather conditions
+    And I visit the "Product information" group
     And I change the "Weather conditions" to "Cold, Snowy"
     And I save the product
     When I visit the "History" column tab
@@ -27,9 +28,9 @@ Feature: Display the product history
     And I remove the "snowy" option
     And I confirm the deletion
     And I save the attribute
-    And I edit the "boots" product
-    And the history of the product "boots" has been built
-    When I visit the "History" column tab
+    Then I should not see the text "There are unsaved changes."
+    When I am on the "boots" product page
+    And I visit the "History" column tab
     Then there should be 2 updates
     And I should see history:
       | version | property           | value      |
@@ -108,10 +109,11 @@ Feature: Display the product history
     And I am on the products page
     And I create a new product
     And I fill in the following information in the popin:
-      | SKU | boots |
+      | SKU    | boots |
+      | family | Boots |
     And I press the "Save" button in the popin
     And I wait to be on the "boots" product page
-    And I add available attributes Manufacturer
+    And I visit the "Product information" group
     And I change the "Manufacturer" to "Converse"
     And I save the product
     When I edit the "boots" product
@@ -138,13 +140,13 @@ Feature: Display the product history
     And I am on the products page
     And I create a new product
     And I fill in the following information in the popin:
-      | SKU | boots |
+      | SKU    | boots |
+      | family | Boots |
     And I press the "Save" button in the popin
     And I wait to be on the "boots" product page
-    And I add available attributes Weather conditions, Comment
+    And I visit the "Product information" group
+    And I change the "Name" to "Nice boots"
     And I change the "Weather conditions" to "Cold, Snowy"
-    And I visit the "Other" group
-    And I change the "Comment" to "nice boots"
     And I save the product
     When I edit the "boots" product
     When I visit the "History" column tab
@@ -152,11 +154,11 @@ Feature: Display the product history
     And I should see history:
       | version | property           | value      |
       | 2       | Weather conditions | cold,snowy |
-      | 2       | Comment            | nice boots |
+      | 2       | Name en            | Nice boots |
     When I am on the "weather_conditions" attribute page
     And I press the "Delete" button and wait for modal
     And I confirm the deletion
-    And I am on the "comment" attribute page
+    And I am on the "name" attribute page
     And I press the "Delete" button and wait for modal
     And I confirm the deletion
     And I edit the "boots" product
@@ -166,4 +168,4 @@ Feature: Display the product history
     And I should see history:
       | version | property           | value      |
       | 2       | weather_conditions | cold,snowy |
-      | 2       | comment            | nice boots |
+      | 2       | name-en_US         | Nice boots |

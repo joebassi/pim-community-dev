@@ -139,7 +139,6 @@ Feature: Display the completeness of a product
     When I visit the "Completeness" column tab
     Then I should see the text "No family defined. Please define a family to calculate the completeness of this product."
     And I change the family of the product to "Sneakers"
-    And I should see the text "You just changed the family of the product. Please save it first to calculate the completeness for the new family."
     And I should not see "No family defined. Please define a family to calculate the completeness of this product."
 
   Scenario: Quickly jump to a field from completeness panel
