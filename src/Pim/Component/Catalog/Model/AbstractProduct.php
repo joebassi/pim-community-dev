@@ -22,6 +22,9 @@ abstract class AbstractProduct implements ProductInterface
     /** @var array */
     protected $rawValues;
 
+    /** @var array */
+    protected $rawCategories;
+
     /** @var \Datetime $created */
     protected $created;
 
@@ -93,6 +96,7 @@ abstract class AbstractProduct implements ProductInterface
         $this->groups = new ArrayCollection();
         $this->associations = new ArrayCollection();
         $this->uniqueData = new ArrayCollection();
+        $this->rawCategories = [];
     }
 
     /**
@@ -235,6 +239,24 @@ abstract class AbstractProduct implements ProductInterface
     public function setRawValues(array $rawValues)
     {
         $this->rawValues = $rawValues;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getRawCategories()
+    {
+        return $this->rawCategories;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setRawCategories(array $rawCategories)
+    {
+        $this->rawCategories = $rawCategories;
 
         return $this;
     }

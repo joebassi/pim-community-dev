@@ -39,4 +39,20 @@ interface CategoryAwareInterface
      * @return array
      */
     public function getCategoryCodes();
+
+    /**
+     * Get raw of categories codes
+     *
+     * @return array
+     */
+    public function getRawCategories();
+
+    /**
+     * Set categories code at the moment it was fetched from the database
+     *
+     * @param array $rawCategories
+     *
+     * @return mixed
+     */
+    public function setRawCategories(array $rawCategories);
 }
