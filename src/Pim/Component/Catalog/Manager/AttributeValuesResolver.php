@@ -93,7 +93,7 @@ class AttributeValuesResolver
     protected function filterExpectedValues(AttributeInterface $attribute, array $values)
     {
         if ($attribute->isLocaleSpecific()) {
-            $availableLocales = $attribute->getLocaleSpecificCodes();
+            $availableLocales = $attribute->getAvailableLocaleCodes();
             foreach ($values as $index => $value) {
                 if ($value['locale'] && !in_array($value['locale'], $availableLocales)) {
                     unset($values[$index]);
