@@ -16,20 +16,22 @@ define([
              * @param {Object} entity
              *
              * @return {Promise}
+             *
+             * TODO: drop this when optional attributes will be removed
              */
             getAttributes: function (entity) {
                 if (!entity.family) {
                     return $.Deferred().resolve(_.keys(entity.values));
-                } else {
-                    return FetcherRegistry.getFetcher('family')
-                        .fetch(entity.family)
-                        .then(function (family) {
-                            return _.union(
-                                _.keys(entity.values),
-                                _.pluck(family.attributes, 'code')
-                            );
-                        });
                 }
+
+                return FetcherRegistry.getFetcher('family')
+                    .fetch(entity.family)
+                    .then(function (family) {
+                        return _.union(
+                            _.keys(entity.values),
+                            _.pluck(family.attributes, 'code')
+                        );
+                    });
             },
 
             /**
