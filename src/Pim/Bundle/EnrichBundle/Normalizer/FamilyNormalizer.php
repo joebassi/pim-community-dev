@@ -132,7 +132,7 @@ class FamilyNormalizer implements NormalizerInterface
 
         $normalizedAttributes = [];
         foreach ($attributes as $attribute) {
-            $normalizedAttributes[] = $this->attributeNormalizer->normalize($attribute, 'internal_api', $context);
+            $normalizedAttributes[] = $attribute->getCode();
         }
 
         return $normalizedAttributes;

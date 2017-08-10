@@ -40,7 +40,6 @@ define(
              */
             save: function () {
                 var family = $.extend(true, {}, this.getFormData());
-                family.attributes = _.pluck(family.attributes, 'code');
 
                 delete family.meta;
 

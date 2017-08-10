@@ -131,9 +131,9 @@ define(
                     }).then(function (fields) {
                         var $valuesPanel = this.$('.object-values');
                         $valuesPanel.empty();
-
-                        //FieldManager.clearVisibleFields();
-                        _.each(fields, this.appendField.bind(this, $valuesPanel));
+                        const views = document.createElement('div');
+                        _.each(fields, this.appendField.bind(this, views));
+                        $valuesPanel.append(views);
                     }.bind(this));
                 this.delegateEvents();
 
@@ -151,8 +151,8 @@ define(
              */
             appendField: function (panel, field) {
                 if (field.canBeSeen()) {
-                    field.render();
-                    panel.append(field.$el);
+                    _.defer(field.render.bind(field));
+                    panel.appendChild(field.el);
                 }
             },
 
