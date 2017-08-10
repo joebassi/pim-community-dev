@@ -52,7 +52,7 @@ class ApiClientController
      *
      * @AclAncestor("pim_enrich_api_connection_manage")
      */
-    public function createAction(Request $request)
+    public function createAction(Request $request) : JsonResponse
     {
         $client = $this->clientManager->createClient();
 
@@ -88,17 +88,16 @@ class ApiClientController
      *
      * @AclAncestor("pim_enrich_api_connection_manage")
      */
-    public function revokeAction(Request $request, $publicId)
+    public function revokeAction(Request $request, $publicId) : JsonResponse
     {
-        $clientManager = $this->clientManager;
-        $client = $clientManager->findClientByPublicId($publicId);
+        $client = $this->clientManager->findClientByPublicId($publicId);
 
         if (null === $client) {
             throw new NotFoundHttpException(
                 sprintf('Client with public id %s does not exist.', $publicId)
             );
         }
-        $clientManager->deleteClient($client);
+        $this->clientManager->deleteClient($client);
 
         return new JsonResponse(null, Response::HTTP_NO_CONTENT);
     }
