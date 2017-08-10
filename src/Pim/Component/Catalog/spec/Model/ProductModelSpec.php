@@ -219,4 +219,32 @@ class ProductModelSpec extends ObjectBehavior
 
         $this->getImage()->shouldReturn(null);
     }
+
+    function it_has_the_values_of_the_variation(ValueCollectionInterface $valueCollection)
+    {
+        $this->setValues($valueCollection);
+        $this->getValuesForVariation()->shouldReturn($valueCollection);
+    }
+
+    function it_has_values(
+        ValueCollectionInterface $valueCollection,
+        ProductModelInterface $productModel,
+        ValueCollectionInterface $parentValuesCollection,
+        \Iterator $iterator,
+        ValueInterface $value
+    ) {
+        $this->setValues($valueCollection);
+        $this->setParent($productModel);
+
+        $productModel->getValuesForVariation()->willReturn($parentValuesCollection);
+        $parentValuesCollection->getIterator()->willreturn($iterator);
+        $iterator->rewind()->shouldBeCalled();
+        $iterator->valid()->willReturn(true, false);
+        $iterator->current()->willReturn($value);
+        $iterator->next()->shouldBeCalled();
+
+        $valueCollection->add($value)->shouldBeCalled();
+
+        $this->getValues()->shouldReturn($valueCollection);
+    }
 }

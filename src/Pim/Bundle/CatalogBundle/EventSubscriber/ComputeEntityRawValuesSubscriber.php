@@ -61,6 +61,7 @@ class ComputeEntityRawValuesSubscriber implements EventSubscriberInterface
             return;
         }
 
+        // todo
         $values = $subject->getValues();
         if ($subject instanceof EntityWithFamilyVariantInterface) {
             $values = $this->removeAncestryValues($subject);

@@ -144,6 +144,14 @@ class ProductModel implements ProductModelInterface
     /**
      * {@inheritdoc}
      */
+    public function getValuesForVariation(): Collection
+    {
+        // TODO: write logic here
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function addValue(ValueInterface $value): ProductModelInterface
     {
         $this->values->add($value);

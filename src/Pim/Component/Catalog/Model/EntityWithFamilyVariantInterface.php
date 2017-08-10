@@ -2,6 +2,8 @@
 
 namespace Pim\Component\Catalog\Model;
 
+use Doctrine\Common\Collections\Collection;
+
 /**
  * All entities who can have a family variant must implement this interface,
  * eg. a product model or a variant product
@@ -37,4 +39,9 @@ interface EntityWithFamilyVariantInterface extends EntityWithValuesInterface
      * @return ProductModelInterface|null
      */
     public function getParent(): ?ProductModelInterface;
+
+    /**
+     * @return Collection
+     */
+    public function getValuesForVariation(): Collection;
 }
